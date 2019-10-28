@@ -11,6 +11,21 @@ colnames(mutations_df) <- c("chr", "pos1","pos2","ref","alt","patient")
 mutations_df <- unique(mutations_df)
 mutations_df$chr <- paste("chr", sep="",mutations_df$chr)
 
+
+###Get sequence 2bp from each end of ref allele using getSeq package
+
+#library(BSgenome.Hsapiens.UCSC.hg19)
+#offset=2
+#tt <- paste(getSeq(BSgenome.Hsapiens.UCSC.hg19,mutations_df$chr, start=mutations_df$pos1-offset, end=mutations_df$pos2-1),
+       #mutations_df$ref,
+       #getSeq(BSgenome.Hsapiens.UCSC.hg19,mutations_df$chr, start=mutations_df$pos1+1, end=mutations_df$pos2+offset)
+   #)
+
+#seq <- tt
+#save(seq, file="~/lymph/mutations/mut_ref_sequence.RData")
+
+###grep for DGYW and WRCH SHM motifs
+
 load("~/lymph/mutations/mut_ref_sequence.RData")
 mutations_df$segment <- gsub(" ","", seq)
 
